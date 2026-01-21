@@ -33,8 +33,6 @@
             raylib
             raygui
             cmake
-
-            # watchexec --restart --exts "c,nix" "nix run . --option substitute false"
             watchexec
           ];
         };
