@@ -22,6 +22,10 @@
             raylib
             raygui
           ];
+
+          cmakeFlags = [
+            "-DCMAKE_BUILD_TYPE=Release"
+          ];
         };
 
         devShells.default = pkgs.mkShell {
