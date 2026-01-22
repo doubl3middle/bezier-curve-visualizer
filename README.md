@@ -26,3 +26,21 @@ We can use [watchexec](https://github.com/watchexec/watchexec) to re-run on file
 ```sh
 watchexec --restart --exts "c,nix" "nix run . --option substitute false"
 ```
+
+
+## Build notes (Windows / MinGW)
+
+When building this project on Windows using MinGW (or w64devkit),
+the build may fail with the following error:
+
+fatal error: raygui.h: No such file or directory
+
+This happens because **raygui is a header-only library** and its include
+directory is not automatically added when using `FetchContent`.
+
+### Fix
+
+After fetching `raygui`, the include path must be added manually:
+
+```cmake
+target_include_directories(${PROJECT_NAME} PRIVATE ${raygui_SOURCE_DIR}/src)
